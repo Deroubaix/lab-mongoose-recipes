@@ -15,11 +15,18 @@ const manageRecipes = async () => {
     const dbConnection = await mongoose.connect(MONGODB_URI);
     console.log(`Connected to the database: "${dbConnection.connection.name}"`);
 
-    await Recipe.create()
-
     // Before adding any recipes to the database, let's remove all existing ones
     await Recipe.deleteMany();
+    
+    await Recipe.create({title: "Kachapuri", cuisine: "Georgian"})
+    await Recipe.insertMany(data)
+    console.log(data)
 
+    await Recipe.findOneAndUpdate({title: 'Rigatoni alla Genovese'}, {duration: 100 })
+
+    await Recipe.deleteOne({title: "Carrot Cake"})
+   
+    mongoose.disconnect()
     // Run your code here, after you have insured that the connection was made
   } catch (error) {
     console.log(error);

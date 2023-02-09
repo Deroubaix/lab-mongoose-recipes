@@ -5,6 +5,7 @@ const recipeSchema = new Schema({
   // TODO: write the schema
   title: {
     type: String,
+    require:true,
   },
   level: {
     type: String,
@@ -14,7 +15,8 @@ const recipeSchema = new Schema({
     type: [String]
   },
   cuisine: {
-    type: String
+    type: String,
+    require: true,
   },
   dishType: {
     type: String,
@@ -33,7 +35,7 @@ const recipeSchema = new Schema({
   },
   created: {
     type: Date,
-    default: 08/02/2023
+    default: Date.now()
   }
 });
 
