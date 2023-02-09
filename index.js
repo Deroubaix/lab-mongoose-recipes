@@ -22,11 +22,13 @@ const manageRecipes = async () => {
     await Recipe.insertMany(data)
     console.log(data)
 
-    await Recipe.findOneAndUpdate({title: 'Rigatoni alla Genovese'}, {duration: 100 })
+    let message = await Recipe.findOneAndUpdate({title: 'Rigatoni alla Genovese'}, {duration: 100 }, {new: true})
+    console.log("Changes were succesfull " + message.duration)
 
-    await Recipe.deleteOne({title: "Carrot Cake"})
+    let message2 = await Recipe.deleteOne({title: "Carrot Cake"}, {new: true})
+    console.log("Changes were succesfull " + message2.title)
    
-    mongoose.disconnect()
+    //mongoose.disconnect()
     // Run your code here, after you have insured that the connection was made
   } catch (error) {
     console.log(error);
